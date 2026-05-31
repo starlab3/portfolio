@@ -1,0 +1,16 @@
+# Brainstorm / mockup artifacts
+.superpowers/
+
+# Full-resolution originals — never committed (kept on local drive/backup)
+_inbox/
+
+# Dependencies & build output
+node_modules/
+dist/
+.astro/
+
+# Netlify
+.netlify/
+
+# OS / editor
+.DS_Store
