@@ -5,6 +5,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgvkaqr';
 <Base title="Contact · Constance · Travels">
   <section class="container form-wrap">
     <h1>Contact</h1>
+    <p class="rights">All photographs are © Constance Starcky and may not be used without permission. Get in touch below to license an image.</p>
     <form action={FORMSPREE_ENDPOINT} method="POST">
       <label>Name<input type="text" name="name" required /></label>
       <label>Email<input type="email" name="email" required /></label>
@@ -17,6 +18,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgvkaqr';
 <style>
   .form-wrap { max-width: var(--maxw); padding-top: 10px; }
   h1 { font-size: 28px; font-weight: 600; }
+  .rights { font-size: 13px; color: var(--muted); margin: 8px 0 4px; }
   form { display: flex; flex-direction: column; gap: 14px; }
   label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); }
   input, textarea {

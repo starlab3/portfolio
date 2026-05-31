@@ -6,6 +6,8 @@ import sharp from 'sharp';
 import { exiftool } from 'exiftool-vendored';
 
 const MAX_EDGE = 2500;
+const CREATOR = 'Constance Starcky';
+const COPYRIGHT = '© Constance Starcky. All rights reserved.';
 
 /**
  * Resize one image to a web master and strip GPS while keeping other EXIF.
@@ -20,8 +22,15 @@ export async function processImage(inputPath, outputPath) {
     .withMetadata()
     .jpeg({ quality: 82, progressive: true })
     .toFile(outputPath);
-  // Remove only GPS tags; date/exposure remain.
-  await exiftool.write(outputPath, {}, ['-gps:all=', '-overwrite_original']);
+  // Remove GPS, embed copyright/creator; date/exposure remain.
+  await exiftool.write(outputPath, {
+    Artist: CREATOR,
+    Copyright: COPYRIGHT,
+    'IPTC:By-line': CREATOR,
+    'IPTC:CopyrightNotice': COPYRIGHT,
+    'XMP-dc:Creator': CREATOR,
+    'XMP-dc:Rights': COPYRIGHT,
+  }, ['-gps:all=', '-overwrite_original']);
 }
 
 const IMG_RE = /\.(jpe?g)$/i;

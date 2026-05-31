@@ -105,6 +105,16 @@ build time.
 - GPS coordinates are stripped from every published image at resize time.
 - Location is **manual-only** text in `album.yaml` — never derived from GPS.
 
+## Copyright
+
+- **Embedded metadata.** `process-photos` writes EXIF/IPTC/XMP copyright +
+  creator tags ("Constance Starcky") into every web master in the same
+  `exiftool` step that strips GPS. Establishes authorship for DMCA/disputes.
+- **On-page notice.** Footer carries a `© <year> Constance Starcky` line; the
+  `/contact` page states photos may not be used without permission.
+- **Resolution cap.** Only ~2500px web masters are published; full-resolution
+  originals are never committed — stolen copies are unusable for large prints.
+
 ## Components / Boundaries
 
 - **`scripts/process-photos`** — the `npm run photos` resize + GPS-strip step.
