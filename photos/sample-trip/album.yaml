@@ -1,9 +1,0 @@
-title: "Sample Trip"
-description: "Placeholder album used to validate the build."
-date: 2024-03
-cover: sample-1.jpg
-photos:
-  sample-1.jpg:
-    caption: "A captioned sample photo"
-    location: "Somewhere"
-  # sample-2.jpg intentionally omitted to exercise the EXIF fallback
