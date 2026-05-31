@@ -1,0 +1,12 @@
+title: "Birds"
+date: 2025-09
+cover: DSC_5312.jpg
+
+# To caption a photo, add a `photos:` map keyed by filename, e.g.:
+#
+# photos:
+#   DSC_4695.jpg:
+#     caption: "Morning light on the coast"
+#     location: "Vancouver Island"
+#
+# Photos left unlisted show their EXIF date + exposure as a fallback.
