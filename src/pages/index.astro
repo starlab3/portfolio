@@ -1,1 +1,30 @@
-<html><body><h1>scaffold</h1></body></html>
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import AlbumCard from '../components/AlbumCard.astro';
+import { getCover, getAlbumImageCount } from '../lib/photos';
+
+const albums = (await getCollection('albums')).sort((a, b) =>
+  b.data.date.localeCompare(a.data.date), // newest first
+);
+
+const cards = albums.map((a) => ({
+  href: `/${a.id}`,
+  cover: getCover(a.id, a.data.cover),
+  title: a.data.title,
+  dateLabel: new Date(`${a.data.date}-01T00:00:00`).toLocaleDateString('en-US', {
+    month: 'long', year: 'numeric',
+  }),
+  count: getAlbumImageCount(a.id),
+}));
+---
+<Base title="Constance · Travels">
+  <section class="container grid">
+    {cards.map((c) => <AlbumCard {...c} />)}
+  </section>
+</Base>
+
+<style>
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding-top: 10px; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+</style>
