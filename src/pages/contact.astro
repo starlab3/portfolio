@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xlgvkaqr';
+---
+<Base title="Contact · Constance · Travels">
+  <section class="container form-wrap">
+    <h1>Contact</h1>
+    <form action={FORMSPREE_ENDPOINT} method="POST">
+      <label>Name<input type="text" name="name" required /></label>
+      <label>Email<input type="email" name="email" required /></label>
+      <label>Message<textarea name="message" rows="6" required></textarea></label>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+</Base>
+
+<style>
+  .form-wrap { max-width: var(--maxw); padding-top: 10px; }
+  h1 { font-size: 28px; font-weight: 600; }
+  form { display: flex; flex-direction: column; gap: 14px; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); }
+  input, textarea {
+    border: 1px solid var(--line); border-radius: 4px; padding: 10px;
+    font-size: 15px; color: var(--fg); background: #fff; font-family: inherit;
+  }
+  button {
+    align-self: flex-start; border: 0; background: var(--fg); color: #fff;
+    padding: 10px 22px; border-radius: 4px; font-size: 14px; cursor: pointer;
+  }
+</style>
