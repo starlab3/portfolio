@@ -50,4 +50,13 @@ describe('processImage', () => {
     const gps = await exifr.gps(out).catch(() => null);
     expect(gps ?? null).toBeNull(); // GPS removed (exifr.gps returns undefined when absent)
   });
+
+  it('embeds copyright and creator metadata', async () => {
+    const out = path.join(dir, 'out-copyright.jpg');
+    await processImage(input, out);
+
+    const exif = await exifr.parse(out, { pick: ['Copyright', 'Artist'] });
+    expect(exif.Copyright).toContain('Constance Starcky');
+    expect(exif.Artist).toBe('Constance Starcky');
+  });
 });
