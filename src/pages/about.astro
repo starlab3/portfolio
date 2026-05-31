@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About · Constance · Travels">
+  <section class="container about-wrap">
+    <h1>About</h1>
+    <div class="bio">
+      <p>I'm Constance Starcky, an amateur wildlife photographer with a passion for nature, wildlife, and wild places.</p>
+      <p>Having lived in four countries and traveled extensively across America, Asia and Europe, I've been fortunate to experience an extraordinary diversity of landscapes and species. My interest in wildlife photography began in Ladakh, where I encountered Tibetan wolves, Tibetan foxes, Tibetan gazelles, and kiangs in their natural habitat—an experience that left a lasting impression on me.</p>
+      <p>I particularly enjoy photographing birds, mammals, mountains, and landscapes, seeking to capture moments that reflect the beauty and fragility of the natural world.</p>
+      <p>While photography is a hobby, conservation is a personal commitment. My approach is rooted in ethical wildlife photography, always prioritizing the welfare of animals and their environment. Protecting nature and biodiversity is a cause I support both through my daily work and through sharing the images and experiences collected along my travels.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-wrap { max-width: var(--maxw); padding-top: 10px; }
+  h1 { font-size: 28px; font-weight: 600; }
+  .bio { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+  .bio p { font-size: 15px; line-height: 1.7; color: var(--fg); }
+</style>

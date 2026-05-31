@@ -5,6 +5,7 @@ const { pathname } = Astro.url;
   <a class="brand" href="/">Constance · Travels</a>
   <nav>
     <a href="/" class={pathname === '/' ? 'active' : ''}>Portfolio</a>
+    <a href="/about" class={pathname.startsWith('/about') ? 'active' : ''}>About</a>
     <a href="/contact" class={pathname.startsWith('/contact') ? 'active' : ''}>Contact</a>
   </nav>
 </header>
