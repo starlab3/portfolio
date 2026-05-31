@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import { getAlbumPhotos } from '../lib/photos';
+
+export async function getStaticPaths() {
+  const albums = await getCollection('albums');
+  return albums.map((a) => ({ params: { album: a.id }, props: { album: a } }));
+}
+
+const { album } = Astro.props;
+const photos = await getAlbumPhotos(album.id, album.data.photos);
+const dateLabel = new Date(`${album.data.date}-01T00:00:00`).toLocaleDateString('en-US', {
+  month: 'long', year: 'numeric',
+});
+---
+<Base title={`${album.data.title} · Constance · Travels`}>
+  <header class="head">
+    <h1>{album.data.title}</h1>
+    <p class="sub">{dateLabel}{album.data.description ? ` · ${album.data.description}` : ''}</p>
+  </header>
+
+  <div class="scroll">
+    {photos.map((p) => <Photo src={p.src} alt={p.alt} caption={p.caption} />)}
+  </div>
+</Base>
+
+<style>
+  .head { text-align: center; padding: 26px 16px 6px; }
+  .head h1 { margin: 0; font-size: 30px; letter-spacing: .04em; font-weight: 600; }
+  .sub { font-size: 13px; color: var(--muted); }
+  .scroll { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 18px 0 26px; }
+</style>

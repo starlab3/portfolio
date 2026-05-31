@@ -50,9 +50,11 @@ export async function getAlbumPhotos(
 
     const abs = path.join(process.cwd(), key.replace(/^\//, ''));
     const buf = await readFile(abs);
-    const exif = (await exifr
+    // exifr resolves to `undefined` when an image has no EXIF (e.g. GPS/metadata
+    // stripped), so coalesce to an empty object before reading fields.
+    const exif = (((await exifr
       .parse(buf, { pick: ['DateTimeOriginal', 'ExposureTime', 'FNumber', 'ISO'] })
-      .catch(() => ({}))) as PhotoExif;
+      .catch(() => undefined)) ?? {}) as PhotoExif);
 
     const meta = photosMeta[filename] ?? {};
     const manual = meta.caption
